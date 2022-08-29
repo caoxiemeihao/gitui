@@ -56,10 +56,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 770,
         "resizable": true,
         "title": "gitui",
-        "width": 800
+        "width": 1170
       }
     ]
   }
