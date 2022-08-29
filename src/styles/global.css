@@ -46,6 +46,10 @@
   --main-color: #bd34fe;
 }
 
+body {
+  overflow: hidden;
+}
+
 #app {
   height: 100%;
 }
