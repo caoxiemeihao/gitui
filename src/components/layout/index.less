@@ -2,6 +2,39 @@
   
   .app-side {
     width: 51px;
+    padding: 1px;
     box-shadow: 0 0 10px -4px #cfcfcf;
+  }
+
+  .menu-item {
+    position: relative;
+    padding-bottom: 100%;
+    font-size: 19px;
+
+    &.active {
+      color: #bd34fe;
+
+      .inner-box {
+        background-color: rgba(65, 209, 255, .14);
+      }
+    }
+    
+    .inner-box {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 2px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(65, 209, 255, .14);
+        box-shadow: 0 0 4px rgba(189, 52, 254, .4) inset;
+      }
+    }
   }
 }
