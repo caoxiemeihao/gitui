@@ -1,6 +1,10 @@
 import { createApp } from 'vue'
+import router from './router'
 import App from './App'
 
-import './style.css'
+import 'ant-design-vue/lib/date-picker/style/css'
+import './styles/global.css'
 
-createApp(App).mount('#app')
+createApp(App)
+  .use(router)
+  .mount('#app')
