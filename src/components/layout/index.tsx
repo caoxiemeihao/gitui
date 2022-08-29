@@ -1,4 +1,4 @@
-import { computed, defineComponent, ref, watch } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { routes } from '@/router'
 import { classname } from '@/utils'
@@ -34,8 +34,15 @@ export default defineComponent({
           {menus.value}
         </div>
         <div class='app-main flex-fill'>
-          {/* @ts-ignore */}
-          {ctx.slots?.default()}
+          <div class='app-header'>
+            <div class='dev-tool'>
+
+            </div>
+          </div>
+          <div class='app-content'>
+            {/* @ts-ignore */}
+            {ctx.slots?.default()}
+          </div>
         </div>
       </div>
     )
