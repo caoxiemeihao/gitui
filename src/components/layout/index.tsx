@@ -28,6 +28,9 @@ export default defineComponent({
     return () => (
       <div class='app-layout d-flex h-100'>
         <div class='app-side'>
+          <div class='menu-item'>
+            <div class='logo'>草</div>
+          </div>
           {menus.value}
         </div>
         <div class='app-main flex-fill'>

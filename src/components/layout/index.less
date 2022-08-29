@@ -6,20 +6,28 @@
     box-shadow: 0 0 10px -4px #cfcfcf;
   }
 
+  .logo {
+    margin: 4px;
+    background-color: var(--main-color);
+    box-shadow: 0 0 4px var(--main-color);
+    border-radius: 50px;
+    font-weight: bolder;
+    color: white;
+  }
+
   .menu-item {
     position: relative;
     padding-bottom: 100%;
     font-size: 19px;
+    color: #999;
 
     &.active {
-      color: #bd34fe;
+      color: var(--main-color);
 
-      .inner-box {
-        background-color: rgba(65, 209, 255, .14);
-      }
     }
-    
-    .inner-box {
+
+    .inner-box,
+    .logo {
       position: absolute;
       top: 0;
       right: 0;
@@ -28,12 +36,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+    
+    .inner-box {
+      margin: 4px;
       border-radius: 2px;
       cursor: pointer;
 
       &:hover {
-        background-color: rgba(65, 209, 255, .14);
-        box-shadow: 0 0 4px rgba(189, 52, 254, .4) inset;
+        box-shadow: 0 0 1px var(--main-color);
       }
     }
   }
