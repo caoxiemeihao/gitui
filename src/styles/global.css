@@ -43,11 +43,20 @@
   --vp-home-hero-image-filter: blur(40px);
 
   /* custom */
-  --main-color: #bd34fe;
+  --main-color: rgb(189, 52, 254);
 }
 
 body {
   overflow: hidden;
+}
+
+input {
+  outline: none;
+  border: none
+}
+
+::selection {
+  background-color: var(--main-color);
 }
 
 #app {
