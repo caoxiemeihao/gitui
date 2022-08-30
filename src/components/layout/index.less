@@ -1,3 +1,7 @@
+.shadow1 {
+  box-shadow: 0 0 1px var(--main-color)
+}
+
 .app-layout {
   
   .app-side {
@@ -44,7 +48,7 @@
       cursor: pointer;
 
       &:hover {
-        box-shadow: 0 0 1px var(--main-color);
+        .shadow1;
       }
     }
   }
@@ -54,6 +58,9 @@
   }
 
   .app-header {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
     height: 50px;
     box-shadow: 0 0 10px -4px #cfcfcf;
   }
@@ -61,5 +68,42 @@
   .app-content {
     height: calc(100% - 50px);
     overflow: auto;
+  }
+
+  .devtool {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    user-select: none;
+
+    .btn-group {
+      display: flex;
+      padding: 1px 7px;
+      border-radius: 2px;
+      color: white;
+      color: var(--main-color);
+      .shadow1;
+
+      .anticon {
+        padding: 7px;
+        margin: 0 4px;
+        border-radius: 100%;
+
+        &:hover {
+          color: white;
+          background-color: var(--main-color);
+        }
+      }
+    }
+
+    input {
+      height: 30px;
+      width: 270px;
+      line-height: 0;
+      border-radius: 2px;
+      text-indent: 9px;
+      color: #666;
+      .shadow1;
+    }
   }
 }
