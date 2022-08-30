@@ -1,13 +1,10 @@
-.shadow1 {
-  box-shadow: 0 0 1px var(--main-color)
-}
 
 .app-layout {
-  
+
   .app-side {
-    width: 51px;
+    width: var(--side-width);
     padding: 1px;
-    box-shadow: 0 0 10px -4px #cfcfcf;
+    box-shadow: var(--shadow-layout);
   }
 
   .logo {
@@ -48,7 +45,7 @@
       cursor: pointer;
 
       &:hover {
-        .shadow1;
+        box-shadow: var(--shadow-border);
       }
     }
   }
@@ -61,12 +58,12 @@
     display: flex;
     align-items: center;
     padding: 0 15px;
-    height: 50px;
-    box-shadow: 0 0 10px -4px #cfcfcf;
+    height: var(--side-width);
+    box-shadow: var(--shadow-layout);
   }
 
   .app-content {
-    height: calc(100% - 50px);
+    height: calc(100% - var(--side-width));
     overflow: auto;
   }
 
@@ -82,7 +79,7 @@
       border-radius: 2px;
       color: white;
       color: var(--main-color);
-      .shadow1;
+      box-shadow: var(--shadow-border);
 
       .anticon {
         padding: 7px;
@@ -103,7 +100,7 @@
       border-radius: 2px;
       text-indent: 9px;
       color: #666;
-      .shadow1;
+      box-shadow: var(--shadow-border);
     }
   }
 }
