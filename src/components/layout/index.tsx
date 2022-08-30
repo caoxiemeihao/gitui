@@ -4,6 +4,7 @@ import {
   ArrowLeftOutlined,
   ArrowRightOutlined,
   ReloadOutlined,
+  CodeOutlined,
 } from '@ant-design/icons-vue'
 import { routes } from '@/router'
 import { classname } from '@/utils'
@@ -19,7 +20,12 @@ export default defineComponent({
       <div class='app-layout d-flex h-100'>
         <div class='app-side'>
           <div class='menu-item'>
-            <div class='logo'>草</div>
+            <div class='logo'>
+              <span class='text'>草</span>
+              <span class='icon'>
+                <CodeOutlined />
+              </span>
+            </div>
           </div>
           {routes.filter(r => r.meta?.show !== false).map(r => (
             <div class={classname(['menu-item', { active: route.path === r.path }])}>

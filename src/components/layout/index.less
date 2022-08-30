@@ -8,12 +8,43 @@
   }
 
   .logo {
+    position: relative;
     margin: 4px;
     background-color: var(--main-color);
-    box-shadow: 0 0 4px var(--main-color);
     border-radius: 50px;
     font-weight: bolder;
     color: white;
+    cursor: pointer;
+    transition: var(--transition-fast);
+
+    span {
+      position: absolute;
+      transition: var(--transition-fast);
+      width: 19px;
+      height: 19px;
+      line-height: 19px;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+    }
+
+    .icon {
+      opacity: 0;
+    }
+
+    &:hover {
+      box-shadow: 0 0 4px var(--main-color);
+
+      .text {
+        opacity: 0;
+      }
+
+      .icon {
+        opacity: 1;
+      }
+    }
   }
 
   .menu-item {
@@ -43,6 +74,7 @@
       margin: 4px;
       border-radius: 2px;
       cursor: pointer;
+      transition: var(--transition-fast);
 
       &:hover {
         box-shadow: var(--shadow-border);
@@ -85,6 +117,7 @@
         padding: 7px;
         margin: 0 4px;
         border-radius: 100%;
+        transition: var(--transition-fast);
 
         &:hover {
           color: white;
