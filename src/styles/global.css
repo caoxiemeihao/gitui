@@ -48,6 +48,7 @@
   --shadow-border: 0 0 1px var(--main-color);
   --shadow-layout: 0 0 10px -4px #cfcfcf;
   --transition-fast: 170ms;
+  --layout-padding: 15px;
 }
 
 body {
