@@ -1,16 +1,20 @@
+import { invoke } from '@tauri-apps/api'
+import { open } from '@tauri-apps/api/dialog'
 import { defineComponent } from 'vue'
-import { useRouter } from 'vue-router'
 import { Button } from 'ant-design-vue'
 
 export default defineComponent({
   name: 'home',
   setup() {
-    const router = useRouter()
+    const readDir = async () => {
+      const directory = await open({ directory: true })
+      const dirs = await invoke('read_dir', { directory })
+      console.log(dirs)
+    }
 
     return () => (
       <div>
-        Home Component
-        <Button onClick={() => router.push('/config')}>Config</Button>
+        <Button onClick={readDir}>读取文件夹</Button>
       </div>
     )
   },
