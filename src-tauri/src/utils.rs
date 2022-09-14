@@ -23,6 +23,7 @@ pub fn read_dir(dir: &str) -> Vec<String> {
     result
 }
 
+// https://tauri.app/v1/guides/features/command/#complete-example
 #[derive(serde::Serialize)]
 pub struct Stat {
     pub is_dir: bool,
