@@ -18,13 +18,22 @@ fn read_dir(directory: &str) -> Vec<String> {
     utils::read_dir(directory)
 }
 
+#[tauri::command]
+fn read_dir_stats(directory: &str) -> Vec<utils::Stat> {
+    utils::read_dir_stats(directory)
+}
+
 fn main() {
     tauri::Builder::default()
         .setup(|app| {
             app.get_window("main").unwrap().open_devtools();
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![greet, read_dir])
+        .invoke_handler(tauri::generate_handler![
+            greet,
+            read_dir,
+            read_dir_stats,
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
