@@ -1,8 +1,8 @@
 use std::{fs, path};
 
-pub fn read_dir(dir: &str) -> Vec<String> {
+pub fn read_dir(_path: &str) -> Vec<String> {
     let mut result = Vec::new();
-    let paths = fs::read_dir(dir).unwrap();
+    let paths = fs::read_dir(_path).unwrap();
 
     for path in paths {
         // println!("{}", path.unwrap().path().display());
@@ -30,11 +30,11 @@ pub struct Stat {
     pub is_file: bool,
     pub is_symlink: bool,
     pub path: String,
-    pub file_name: String,
+    pub name: String,
 }
 
-pub fn read_dir_stats(path: &str) -> Vec<Stat> {
-    let paths = fs::read_dir(path).unwrap();
+pub fn read_dir_stat(_path: &str) -> Vec<Stat> {
+    let paths = fs::read_dir(_path).unwrap();
     let mut dirs = Vec::new();
 
     for path in paths {
@@ -51,7 +51,7 @@ pub fn read_dir_stats(path: &str) -> Vec<Stat> {
             is_file: path_buf.is_file(),
             is_symlink: path_buf.is_symlink(),
             path: path_buf.to_str().unwrap().into(),
-            file_name: path_buf.file_name().unwrap().to_str().unwrap().into(),
+            name: path_buf.file_name().unwrap().to_str().unwrap().into(),
         };
         dirs.push(stat);
     }
@@ -59,17 +59,18 @@ pub fn read_dir_stats(path: &str) -> Vec<Stat> {
     dirs
 }
 
-pub fn read_stat(filepath: &str) -> Option<Stat> {
-    let path2 = path::Path::new(filepath);
+pub fn read_stat(_path: &str) -> Option<Stat> {
+    let path2 = path::Path::new(_path);
     if path2.exists() {
-        let metadata = fs::metadata(filepath);
+        let metadata = fs::metadata(_path);
         match metadata {
             Ok(meta) => Some(Stat {
                 is_dir: meta.is_dir(),
                 is_file: meta.is_file(),
                 is_symlink: meta.is_symlink(),
-                path: filepath.into(),
-                file_name: path2.file_name().unwrap().to_str().unwrap().into(),
+                path: _path.into(),
+                // If `path2` is a directory, `name` will be the last level directory.
+                name: path2.file_name().unwrap().to_str().unwrap().into(),
             }),
             Err(err) => {
                 println!("{}", err);

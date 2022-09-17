@@ -14,25 +14,19 @@ fn greet(name: &str) -> String {
 }
 
 #[tauri::command]
-fn read_dir(directory: &str) -> Vec<String> {
-    utils::read_dir(directory)
+fn read_dir(path: &str) -> Vec<String> {
+    utils::read_dir(path)
 }
 
 #[tauri::command]
-fn read_dir_stats(directory: &str) -> Vec<utils::Stat> {
-    utils::read_dir_stats(directory)
+fn read_dir_stat(path: &str) -> Vec<utils::Stat> {
+    utils::read_dir_stat(path)
 }
 
 #[tauri::command]
-fn read_stat(path: &str) -> Vec<utils::Stat> {
-    let mut stats: Vec<utils::Stat> = Vec::new();
-    let stat = utils::read_stat(path);
-
-    if stat.is_some() {
-        stats.push(stat.unwrap());
-    }
-
-    stats
+fn read_stat(path: &str) -> Option<utils::Stat> {
+    // None(rs) -> null(js)
+    utils::read_stat(path)
 }
 
 fn main() {
@@ -44,7 +38,7 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             greet,
             read_dir,
-            read_dir_stats,
+            read_dir_stat,
             read_stat,
         ])
         .run(tauri::generate_context!())
