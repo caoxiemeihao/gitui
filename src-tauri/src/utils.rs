@@ -1,4 +1,4 @@
-use std::fs;
+use std::{fs, path};
 
 pub fn read_dir(dir: &str) -> Vec<String> {
     let mut result = Vec::new();
@@ -28,6 +28,7 @@ pub fn read_dir(dir: &str) -> Vec<String> {
 pub struct Stat {
     pub is_dir: bool,
     pub is_file: bool,
+    pub is_symlink: bool,
     pub path: String,
     pub file_name: String,
 }
@@ -48,6 +49,7 @@ pub fn read_dir_stats(path: &str) -> Vec<Stat> {
         let stat = Stat {
             is_dir: path_buf.is_dir(),
             is_file: path_buf.is_file(),
+            is_symlink: path_buf.is_symlink(),
             path: path_buf.to_str().unwrap().into(),
             file_name: path_buf.file_name().unwrap().to_str().unwrap().into(),
         };
@@ -55,4 +57,26 @@ pub fn read_dir_stats(path: &str) -> Vec<Stat> {
     }
 
     dirs
+}
+
+pub fn read_stat(filepath: &str) -> Option<Stat> {
+    let path2 = path::Path::new(filepath);
+    if path2.exists() {
+        let metadata = fs::metadata(filepath);
+        match metadata {
+            Ok(meta) => Some(Stat {
+                is_dir: meta.is_dir(),
+                is_file: meta.is_file(),
+                is_symlink: meta.is_symlink(),
+                path: filepath.into(),
+                file_name: path2.file_name().unwrap().to_str().unwrap().into(),
+            }),
+            Err(err) => {
+                println!("{}", err);
+                None
+            }
+        }
+    } else {
+        None
+    }
 }

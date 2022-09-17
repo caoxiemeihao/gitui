@@ -23,6 +23,18 @@ fn read_dir_stats(directory: &str) -> Vec<utils::Stat> {
     utils::read_dir_stats(directory)
 }
 
+#[tauri::command]
+fn read_stat(path: &str) -> Vec<utils::Stat> {
+    let mut stats: Vec<utils::Stat> = Vec::new();
+    let stat = utils::read_stat(path);
+
+    if stat.is_some() {
+        stats.push(stat.unwrap());
+    }
+
+    stats
+}
+
 fn main() {
     tauri::Builder::default()
         .setup(|app| {
@@ -33,6 +45,7 @@ fn main() {
             greet,
             read_dir,
             read_dir_stats,
+            read_stat,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
