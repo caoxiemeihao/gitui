@@ -30,8 +30,13 @@ export default defineComponent({
           {dirs.value.map(dir => dir.name)}
         </div>
         <div class='middle h-100' />
-        <div class='right h-100 flex-fill'>
-          {ReadPathUI()}
+        <div class='right h-100 pr-2 pl-2 flex-fill d-flex flex-column'>
+          <div class='current-path'>
+            {'/user/asdf/'}
+          </div>
+          <div class='right-content flex-fill'>
+            {ReadPathUI({ style: 'height:calc(100% - 8px);' })}
+          </div>
         </div>
       </div>
     )
