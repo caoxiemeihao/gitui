@@ -1,28 +1,53 @@
 import { invoke } from '@tauri-apps/api'
-import { open } from '@tauri-apps/api/dialog'
-import { defineComponent } from 'vue'
-import { Button } from 'ant-design-vue'
+import {
+  defineComponent,
+  ref,
+  watch,
+} from 'vue'
+import { useDrop } from '@/hooks/useDrop'
+import { PathStat } from '@/types'
 
-interface DirStat {
-  is_dir: boolean
-  is_file: boolean
-  path: string
-  file_name: string
-}
+import './index.less'
+
+type DirRecord = PathStat & { child?: PathStat[] }
 
 export default defineComponent({
   name: 'home',
   setup() {
-    const readDir = async () => {
-      const directory = await open({ directory: true })
-      const dirs: DirStat[] = await invoke('read_dir_stats', { directory })
-      console.log(dirs)
-    }
+    const {
+      paths,
+      UI: ReadPathUI,
+    } = useDrop()
+    const dirs = ref<DirRecord[]>([])
+
+    watch(paths, async _paths => {
+      dirs.value = (await read_path_stat_list(_paths!)).filter(({ is_dir }) => is_dir)
+    })
 
     return () => (
-      <div>
-        <Button onClick={readDir}>读取文件夹</Button>
+      <div class='view-home h-100 d-flex'>
+        <div class='left h-100'>
+          {dirs.value.map(dir => dir.name)}
+        </div>
+        <div class='middle h-100' />
+        <div class='right h-100 flex-fill'>
+          {ReadPathUI()}
+        </div>
       </div>
     )
   },
 })
+
+async function read_path_stat_list(paths: string[]) {
+  const path_stat_list: PathStat[] = []
+  for (const path of paths) {
+    const res = (await invoke('read_stat', { path })) as PathStat | null
+    if (!res) continue
+    path_stat_list.push(res)
+  }
+  return path_stat_list
+}
+
+async function read_dir_stat(path: string) {
+  return (await invoke('read_dir_stat', { path })) as PathStat[]
+}
