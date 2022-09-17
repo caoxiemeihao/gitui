@@ -4,7 +4,7 @@ import {
   type UnlistenFn,
   listen,
 } from '@tauri-apps/api/event'
-import { onUnmounted, ref } from 'vue'
+import { HTMLAttributes, onUnmounted, ref } from 'vue'
 import { Button } from 'ant-design-vue'
 import { classname } from '@/utils'
 
@@ -47,26 +47,24 @@ export function useDrop() {
   return {
     paths,
     // FC 跟随渲染
-    UI: () => (
-      <div class='hooks-use-drop h-100 position-relative'>
-        <div
-          class={classname([
-            'h-100',
-            'placeholder',
-            paths.value ? 'active' : status.value,
-            'd-flex',
-            'justify-content-center',
-            'align-items-center',
-          ])}
-        >
-          <div class='text-center'>
-            <Button
-              loading={loading.value}
-              type='primary'
-              onClick={openPath}
-            >读取文件夹</Button>
-            <div class='text mt-4'>拖拽文件夹至此</div>
-          </div>
+    UI: (attrs?: Partial<HTMLAttributes>) => (
+      <div
+        class={classname([
+          'hooks-use-drop',
+          paths.value ? 'active' : status.value,
+          'd-flex',
+          'justify-content-center',
+          'align-items-center',
+        ])}
+        {...attrs}
+      >
+        <div class='text-center'>
+          <Button
+            loading={loading.value}
+            type='primary'
+            onClick={openPath}
+          >读取文件夹</Button>
+          <div class='text mt-4'>拖拽文件夹至此</div>
         </div>
       </div>
     ),

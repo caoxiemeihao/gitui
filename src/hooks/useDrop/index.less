@@ -1,27 +1,20 @@
 .hooks-use-drop {
-  .placeholder {
-    border: 2px dashed transparent;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+  border: 2px dashed transparent;
+
+  &.empty {
+    border-color: #ccc;
+  }
+
+  &.hover {
+    border-color: var(--main-color);
+  }
   
-    &.empty {
-      border-color: #ccc;
-    }
-  
-    &.hover {
-      border-color: var(--main-color);
-    }
-    
-    &.active {
-      border-color: aqua;
-    }
-  
-    .text {
-      font-size: 19px;
-      color: #ccc;
-    }
+  &.active {
+    border-color: aqua;
+  }
+
+  .text {
+    font-size: 19px;
+    color: #ccc;
   }
 }
