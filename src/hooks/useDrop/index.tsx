@@ -4,7 +4,7 @@ import {
   type UnlistenFn,
   listen,
 } from '@tauri-apps/api/event'
-import { ref } from 'vue'
+import { onUnmounted, ref } from 'vue'
 import { Button } from 'ant-design-vue'
 import { classname } from '@/utils'
 
@@ -38,6 +38,12 @@ export function useDrop() {
     status.value = 'empty'
   }).then(fn => unListen.drop_cancelled = fn)
 
+  onUnmounted(() => {
+    for (const key of Object.keys(unListen)) {
+      unListen[key as DropType]!()
+    }
+  })
+
   return {
     paths,
     // FC 跟随渲染
@@ -64,10 +70,5 @@ export function useDrop() {
         </div>
       </div>
     ),
-    unListen() {
-      for (const key of Object.keys(unListen)) {
-        unListen[key as DropType]!()
-      }
-    },
   }
 }
