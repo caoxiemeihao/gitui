@@ -48,7 +48,7 @@ export default defineComponent({
                 <ArrowRightOutlined onClick={() => router.forward()} />
                 <ReloadOutlined onClick={() => location.reload()} />
               </div>
-              <input class='ml-2' value={route.path} />
+              <input class='ml-2 bg-white' value={route.path} />
             </div>
           </div>
           <div class='app-content'>

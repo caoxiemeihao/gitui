@@ -45,6 +45,7 @@
   /* custom */
   --main-color: rgb(189, 52, 254);
   --side-width: 51px;
+  --header-height: 32px;
   --shadow-border: 0 0 1px var(--main-color);
   --shadow-layout: 0 0 10px -4px #cfcfcf;
   --transition-fast: 170ms;
