@@ -34,26 +34,33 @@ pub struct Stat {
 }
 
 pub fn read_dir_stat(_path: &str) -> Vec<Stat> {
-    let paths = fs::read_dir(_path).unwrap();
-    let mut dirs = Vec::new();
+    let mut dirs: Vec<Stat> = Vec::new();
+    let stat = read_stat(_path);
 
-    for path in paths {
-        let path_buf = path.unwrap().path();
-        // let mut dir = HashMap::new();
-        // let _path = path_buf.to_str().unwrap().to_string();
-        // let is_dir = path_buf.is_dir();
-        // let is_file = path_buf.is_file();
-        // dir.insert("path", _path);
-        // dir.insert("is_dir", is_dir.to_string());
-        // dir.insert("is_file", is_file.to_string());
-        let stat = Stat {
-            is_dir: path_buf.is_dir(),
-            is_file: path_buf.is_file(),
-            is_symlink: path_buf.is_symlink(),
-            path: path_buf.to_str().unwrap().into(),
-            name: path_buf.file_name().unwrap().to_str().unwrap().into(),
-        };
-        dirs.push(stat);
+    if stat.is_some() && stat.unwrap().is_dir {
+        let paths = fs::read_dir(_path);
+        if paths.is_ok() {
+            for path in paths.unwrap() {
+                if path.is_ok() {
+                    let path_buf = path.unwrap().path();
+                    // let mut dir = HashMap::new();
+                    // let _path = path_buf.to_str().unwrap().to_string();
+                    // let is_dir = path_buf.is_dir();
+                    // let is_file = path_buf.is_file();
+                    // dir.insert("path", _path);
+                    // dir.insert("is_dir", is_dir.to_string());
+                    // dir.insert("is_file", is_file.to_string());
+                    let stat = Stat {
+                        is_dir: path_buf.is_dir(),
+                        is_file: path_buf.is_file(),
+                        is_symlink: path_buf.is_symlink(),
+                        path: path_buf.to_str().unwrap().into(),
+                        name: path_buf.file_name().unwrap().to_str().unwrap().into(),
+                    };
+                    dirs.push(stat);
+                }
+            }
+        }
     }
 
     dirs
