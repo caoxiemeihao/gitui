@@ -1,6 +1,55 @@
 .view-home {
   .left {
-    width: 200px;
+    width: 274px;
+    background-color: #eaeaeb;
+
+    .tree-item {
+      color: rgb(97, 97, 97);
+      font-size: 13px;
+      line-height: 19px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        box-shadow: 0 0 17px -7px var(--main-color) inset;
+        border: .5px solid var(--main-color);
+        opacity: 0;
+      }
+
+      &.selected {
+        background-color: #dbdbdc;
+      }
+
+      &.focused {
+        &::after {
+          opacity: 1;
+        }
+      }
+
+      &:hover {
+        &::after {
+          opacity: .27;
+        }
+      }
+
+      .icon {
+        width: 17px;
+        height: 17px;
+      }
+
+      .tree-name {
+        width: 0;
+      }
+
+      .tree-expand {
+        transform: scale(.77);
+      }
+    }
+
   }
 
   .middle {
@@ -11,9 +60,16 @@
   .right {
     width: 0;
 
-    .current-path {
-      height: 30px;
-      padding-top: 4px;
+    .breadcrumbs {
+      height: 24px;
+      padding-top: 2px;
+      font-size: 13px;
+    }
+
+    .presentation {
+      top: 24px;
+      height: 3px;
+      box-shadow: #dddddd 0 6px 6px -6px inset;
     }
 
     .right-content {
