@@ -546,3 +546,10 @@
 .overflow-hidden {
   overflow: hidden !important;
 }
+
+/* ------------------- */
+
+.user-select-none {
+  user-select: none;
+  -webkit-user-select: none;
+}
