@@ -1,4 +1,3 @@
-import { invoke } from '@tauri-apps/api'
 import { defineComponent } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import {
@@ -19,7 +18,7 @@ export default defineComponent({
 
     return () => (
       <div class='app-layout d-flex h-100'>
-        <div class='app-side'>
+        <div class='app-side user-select-none'>
           <div class='menu-item'>
             <div class='logo'>
               <span class='text'>草</span>
@@ -42,7 +41,7 @@ export default defineComponent({
         </div>
         <div class='app-main flex-fill'>
           <div class='app-header'>
-            <div class='devtools'>
+            <div class='devtools user-select-none'>
               <div class='btn-group'>
                 <ArrowLeftOutlined onClick={() => router.back()} />
                 <ArrowRightOutlined onClick={() => router.forward()} />
