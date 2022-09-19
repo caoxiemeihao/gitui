@@ -5,13 +5,12 @@ import {
 } from 'vue'
 import { RightOutlined, DownOutlined } from '@ant-design/icons-vue'
 import { useDrop } from '@/hooks/useDrop'
+import { read_dir_stat, read_stat_list } from '@/utils/fs'
+import { walk } from '@/utils/function'
 import {
   type Tree,
   expandTree,
   withIcon,
-  treeWalk,
-  read_dir_stat,
-  read_path_stat_list,
 } from './utils'
 
 import './index.less'
@@ -30,7 +29,7 @@ export default defineComponent({
       const dom = event.target as HTMLElement
       const _dirs: Tree[] = []
       for (const dir of dirs.value) {
-        _dirs.push(await treeWalk.async(dir, async (tree, ancestor) => {
+        _dirs.push(await walk.async<Tree>(dir, async (tree, ancestor) => {
           if (tree.path === dom.dataset.path) {
             tree.act_class = 'selected'
             if (tree.is_dir) {
@@ -52,7 +51,7 @@ export default defineComponent({
     }
 
     watch(paths, async _paths => {
-      dirs.value = (await read_path_stat_list(_paths!)).filter(({ is_dir }) => is_dir)
+      dirs.value = (await read_stat_list(_paths!)).filter(({ is_dir }) => is_dir)
     })
 
     const renderTree = (tree: Tree) => {
