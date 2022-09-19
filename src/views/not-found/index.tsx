@@ -13,8 +13,14 @@ export default defineComponent({
 
     return () => (
       <Card style='text-align:center;'>
-        <Alert type='warning' message='404 Not found' />
-        <Button type='primary' onClick={() => router.push('/')}>To Home</Button>
+        <div style='margin-top:24vh;'>
+          <Alert type='warning' message='404 Not found' />
+          <Button
+            type='primary'
+            style='margin-top:15px;'
+            onClick={() => router.push('/')}
+          >To Home</Button>
+        </div>
       </Card>
     )
   },

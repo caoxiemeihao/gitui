@@ -39,12 +39,21 @@ export const routes: RouteRecordRaw[] = [
     },
   },
   {
-    path: '/',
+    path: '/demo',
     name: 'demo',
     component: Demo,
     meta: {
       title: 'Demo',
       icon: <WindowsFilled />,
+    },
+  },
+  {
+    path: '/',
+    redirect(to) {
+      return routes[0].path
+    },
+    meta: {
+      show: false,
     },
   },
   {
