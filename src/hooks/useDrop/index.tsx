@@ -30,6 +30,7 @@ export function useDrop() {
 
   listen('tauri://file-drop', (event: Event<string[]>) => {
     paths.value = event.payload
+    status.value = 'active'
   }).then(fn => unListen.drop = fn)
   listen('tauri://file-drop-hover', () => {
     status.value = 'hover'
@@ -46,12 +47,13 @@ export function useDrop() {
 
   return {
     paths,
+    status,
     // FC 跟随渲染
     UI: (attrs?: Partial<HTMLAttributes>) => (
       <div
         class={classname([
           'hooks-use-drop',
-          paths.value ? 'active' : status.value,
+          status.value,
           'd-flex',
           'justify-content-center',
           'align-items-center',
