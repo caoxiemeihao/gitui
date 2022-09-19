@@ -18,7 +18,7 @@ import './index.less'
 import { classname } from '@/utils'
 
 export default defineComponent({
-  name: 'home',
+  name: 'Demo',
   setup() {
     const {
       paths,
