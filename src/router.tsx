@@ -4,11 +4,13 @@ import {
   createWebHashHistory,
 } from 'vue-router'
 import {
-  HomeOutlined,
-  SettingOutlined,
+  GithubFilled,
+  WindowsFilled,
+  SettingFilled,
 } from '@ant-design/icons-vue'
-import Home from './views/home'
+import Demo from './views/demo'
 import Config from './views/config'
+import GitConfig from './views/git-config'
 import NotFound from './views/not-found'
 
 export interface MetaRecord {
@@ -19,12 +21,12 @@ export interface MetaRecord {
 
 export const routes: RouteRecordRaw[] = [
   {
-    path: '/',
-    name: 'home',
-    component: Home,
+    path: '/git-config',
+    name: 'git-config',
+    component: GitConfig,
     meta: {
-      title: '首页',
-      icon: <HomeOutlined />,
+      title: 'Git-配置',
+      icon: <GithubFilled />,
     },
   },
   {
@@ -33,7 +35,16 @@ export const routes: RouteRecordRaw[] = [
     component: Config,
     meta: {
       title: '配置',
-      icon: <SettingOutlined />,
+      icon: <SettingFilled />,
+    },
+  },
+  {
+    path: '/',
+    name: 'demo',
+    component: Demo,
+    meta: {
+      title: 'Demo',
+      icon: <WindowsFilled />,
     },
   },
   {
