@@ -17,16 +17,22 @@ import './index.less'
 import { classname } from '@/utils'
 
 export default defineComponent({
-  name: 'Demo',
+  name: 'demo',
   setup() {
     const {
       paths,
       UI: ReadPathUI,
     } = useDrop()
     const dirs = ref<Tree[]>([])
+    const currentPath = ref('')
 
     const clickTreeDelegate = async (event: MouseEvent) => {
       const dom = event.target as HTMLElement
+
+      if (dom.dataset.path) {
+        currentPath.value = dom.dataset.path
+      }
+
       const _dirs: Tree[] = []
       for (const dir of dirs.value) {
         _dirs.push(await walk.async<Tree>(dir, async (tree, ancestor) => {
@@ -96,7 +102,7 @@ export default defineComponent({
         <div class='middle h-100' />
         <div class='right position-relative h-100 flex-fill d-flex flex-column overflow-auto'>
           <div class='breadcrumbs pl-2 user-select-none'>
-            {'/user/asdf/'}
+            {currentPath.value}
           </div>
           <div class='presentation position-absolute w-100' />
           <div class='right-content flex-fill p-2'>
