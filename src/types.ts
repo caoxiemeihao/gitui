@@ -5,3 +5,8 @@ export interface PathStat {
   path: string
   name: string
 }
+
+export interface ExecResult {
+  error: null | string
+  output: null | string
+}
