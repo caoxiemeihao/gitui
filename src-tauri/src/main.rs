@@ -29,6 +29,17 @@ fn read_stat(path: &str) -> Option<utils::Stat> {
     utils::read_stat(path)
 }
 
+#[tauri::command]
+fn exec(
+    path: &str,
+    // `cmd` is `invoke()` builtin args
+    // https://tauri.app/v1/api/js/tauri/#invoke
+    command: &str,
+    args: Vec<&str>,
+) -> utils::ExecResult {
+    utils::exec(path, command, args)
+}
+
 fn main() {
     tauri::Builder::default()
         .setup(|app| {
@@ -40,6 +51,7 @@ fn main() {
             read_dir,
             read_dir_stat,
             read_stat,
+            exec,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

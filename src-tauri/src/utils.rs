@@ -1,4 +1,4 @@
-use std::{fs, path};
+use std::{fs, path, process::Command, str::from_utf8};
 
 pub fn read_dir(_path: &str) -> Vec<String> {
     let mut result = Vec::new();
@@ -86,5 +86,33 @@ pub fn read_stat(_path: &str) -> Option<Stat> {
         }
     } else {
         None
+    }
+}
+
+// --------------------------------------------
+
+#[derive(serde::Serialize)]
+pub struct ExecResult {
+    pub error: Option<String>,
+    pub output: Option<String>,
+}
+
+pub fn exec(_path: &str, command: &str, args: Vec<&str>) -> ExecResult {
+    let output_result = Command::new(command).args(args).current_dir(_path).output();
+    match output_result {
+        Ok(output) => match from_utf8(&output.stdout) {
+            Ok(out) => ExecResult {
+                error: None,
+                output: Some(out.to_string()),
+            },
+            Err(err) => ExecResult {
+                error: Some(err.to_string()),
+                output: None,
+            },
+        },
+        Err(error) => ExecResult {
+            error: Some(error.to_string()),
+            output: None,
+        },
     }
 }
