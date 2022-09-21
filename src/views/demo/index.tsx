@@ -7,6 +7,7 @@ import { RightOutlined, DownOutlined } from '@ant-design/icons-vue'
 import { useDrop } from '@/hooks/useDrop'
 import { read_dir_stat, read_stat_list } from '@/utils/fs'
 import { walk } from '@/utils/function'
+import { classname } from '@/utils/function'
 import {
   type Tree,
   expandTree,
@@ -14,7 +15,6 @@ import {
 } from './utils'
 
 import './index.less'
-import { classname } from '@/utils'
 
 export default defineComponent({
   name: 'demo',

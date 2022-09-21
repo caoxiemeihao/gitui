@@ -7,7 +7,7 @@ import {
   CodeOutlined,
 } from '@ant-design/icons-vue'
 import { routes } from '@/router'
-import { classname } from '@/utils'
+import { classname } from '@/utils/function'
 import './index.less'
 
 export default defineComponent({

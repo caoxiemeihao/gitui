@@ -6,7 +6,7 @@ import {
 } from '@tauri-apps/api/event'
 import { HTMLAttributes, onUnmounted, ref } from 'vue'
 import { Button } from 'ant-design-vue'
-import { classname } from '@/utils'
+import { classname } from '@/utils/function'
 
 import './index.less'
 
