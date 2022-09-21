@@ -1,0 +1,117 @@
+.git-config {
+  --antd-primary: #096dd9;
+  --border-color: #f0f0f0;
+  --background-color: #fafafa;
+  --git-form-height: 130px;
+
+  .left {
+    width: 274px;
+    background-color: var(--background-color);
+
+    .git-repo {
+      height: calc(50% - var(--git-form-height) / 2);
+
+      .ant-tag {
+        margin: 0 2px 2px 0;
+      }
+    }
+
+    .git-form {
+      height: var(--git-form-height);
+      padding-top: 1rem;
+    }
+
+    .git-user {
+      height: calc(50% - var(--git-form-height) / 2);
+
+      .item {
+        font-size: 12px;
+        color: #666;
+      }
+
+      .user {
+        position: relative;
+        background-color: white;
+
+        &.global::after {
+          background-color: var(--main-color); // rgba(189, 52, 254, .14)
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          width: 2px;
+          background-color: cyan;
+        }
+      }
+    }
+
+    [class^="git-"] {
+      position: relative;
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      /*
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background-color: var(--border-color);
+      }
+      */
+      border-bottom: 1px solid var(--border-color);
+
+      &:last-child {
+        /*
+        &::after {
+          display: none;
+        }
+        */
+        border-bottom: none;
+      }
+    }
+
+    .ant-btn {
+      font-size: 12px;
+    }
+  }
+
+  .middle {
+    width: .5px;
+    background-color: var(--border-color);
+  }  
+
+  .right {
+    width: 0;
+
+    .right-header {
+      height: 24px;
+      padding-top: 2px;
+      font-size: 13px;
+      color: #999;
+    }
+
+    .presentation {
+      top: 24px;
+      height: 3px;
+      box-shadow: #dddddd 0 6px 6px -6px inset;
+      z-index: 1;
+    }
+
+    .right-content {
+      height: 0;
+    }
+
+    .right-content .badge-classify {
+      .ant-badge-count {
+        background-color: transparent;
+        box-shadow: none;
+      }
+    }
+  }
+}
