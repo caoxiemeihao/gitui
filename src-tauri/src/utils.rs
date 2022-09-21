@@ -1,5 +1,7 @@
 use std::{fs, path, process::Command, str::from_utf8};
 
+// -------------------------------------------- fs-s
+
 pub fn read_dir(_path: &str) -> Vec<String> {
     let mut result = Vec::new();
     let paths = fs::read_dir(_path).unwrap();
@@ -89,7 +91,7 @@ pub fn read_stat(_path: &str) -> Option<Stat> {
     }
 }
 
-// --------------------------------------------
+// -------------------------------------------- fs-e
 
 #[derive(serde::Serialize)]
 pub struct ExecResult {
@@ -111,6 +113,7 @@ pub fn exec(_path: &str, command: &str, args: Vec<&str>) -> ExecResult {
             },
         },
         Err(error) => ExecResult {
+            // 🚨 If the `command` is not available will got `No such file or directory (os error 2)`
             error: Some(error.to_string()),
             output: None,
         },
