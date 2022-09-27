@@ -358,7 +358,7 @@ export default defineComponent({
                   type='primary'
                   danger
                   onClick={removeSelected}
-                >删除已选</Button>
+                >{selectedRowKeys.value.length ? '删除已选' : '刷新'}</Button>
               </div>
               <Table {...tableProps.value} />
             </Spin>
