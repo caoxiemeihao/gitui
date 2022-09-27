@@ -3,7 +3,7 @@
     windows_subsystem = "windows"
 )]
 
-use tauri::Manager;
+// use tauri::Manager;
 mod utils;
 
 // static mut GLOBAL_APP: Option<&mut tauri::App> = None;
@@ -42,10 +42,11 @@ fn exec(
 
 fn main() {
     tauri::Builder::default()
-        .setup(|app| {
-            app.get_window("main").unwrap().open_devtools();
-            Ok(())
-        })
+        // .setup(|app| {
+        // error[E0599]: no method named `open_devtools` found for struct `Window` in the current scope
+        // app.get_window("main").unwrap().open_devtools();
+        //     Ok(())
+        // })
         .invoke_handler(tauri::generate_handler![
             greet,
             read_dir,
